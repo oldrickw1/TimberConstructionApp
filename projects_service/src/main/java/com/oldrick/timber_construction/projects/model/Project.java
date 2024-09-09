@@ -21,19 +21,20 @@ public class Project {
     private String id;
     private String name;
     private String description;
-    private double latitude;
-    private double longitude;
-    private String type; // to enum
-    private String clientName; // to Client class?
-    private String status; // enum
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalDate actualStartDate;
-    private LocalDate actualEndDate;
-    private BigDecimal totalBudget;
-    private List<Contractor> contractors;
-    private List<SubContractor> subContractors;
-    private List<Architect> architects;
+    private Architect architect;
+//    private double latitude;
+//    private double longitude;
+//    private String type; // to enum
+//    private String clientName; // to Client class?
+//    private String status; // enum
+//    private LocalDate startDate;
+//    private LocalDate endDate;
+//    private LocalDate actualStartDate;
+//    private LocalDate actualEndDate;
+//    private BigDecimal totalBudget;
+//    private List<Contractor> contractors;
+//    private List<SubContractor> subContractors;
+//    private List<Architect> architects;
 
 
 
