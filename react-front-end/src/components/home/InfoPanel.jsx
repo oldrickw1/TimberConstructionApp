@@ -2,11 +2,21 @@ import React from 'react';
 import './InfoPanel.css'
 
 const InfoPanel = ({ marker }) => {
+  function processName(name) {
+    return name.replace(/\s+/g, '_').toLowerCase();
+  }
+
   return (
     <>
      <div className="info-container">
       <div className="info-image">
-        <img src={marker.image} alt={marker.name} />
+        <img 
+          src={"../../../img/" + processName(marker.name) + ".jpg"} 
+          alt={marker.name} 
+          onError={(e) => {
+            e.target.src = "../../../img/default/default.jpg"
+          }}
+        />
       </div>
 
       <div className="info-content">

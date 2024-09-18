@@ -20,28 +20,34 @@ const Globe = ({ markers, onMarkerClick }) => {
                 baseLayerPicker: false,  
                 terrainProvider: Cesium.createWorldTerrain(),
           });  
-          // Set the initial view to Spain
-          viewerRef.current.camera.setView({
-              destination: Cesium.Rectangle.fromDegrees(-9.86, 35.95, 3.34, 43.79) // Bounding box for Spain
-          });
+          // // Set the initial view to Spain
+          // viewerRef.current.camera.setView({
+          //     destination: Cesium.Rectangle.fromDegrees(-9.86, 35.95, 3.34, 43.79) // Bounding box for Spain
+          // });
           
           viewerRef.current.screenSpaceEventHandler.setInputAction(function (click) {
-              const pickedObject = viewerRef.current.scene.pick(click.position);
-              
-              // Check if a marker was clicked
-              if (Cesium.defined(pickedObject)) {
-                const clickedEntity = pickedObject.id;
-                console.log(clickedEntity.markerData)
-      
-                // Get the name from the clicked entity
-                if (clickedEntity.markerData ) {
-                  console.log(`You clicked on ${clickedEntity.markerData.name}`)
-                  onMarkerClick(clickedEntity.markerData);
-                }
+            const pickedObject = viewerRef.current.scene.pick(click.position);
+            
+            // Check if a marker was clicked
+            if (Cesium.defined(pickedObject)) {
+              const clickedEntity = pickedObject.id;
+              console.log(clickedEntity.markerData)
+    
+              // Get the name from the clicked entity
+              if (clickedEntity.markerData ) {
+                console.log(`You clicked on ${clickedEntity.markerData.name}`)
+                onMarkerClick(clickedEntity.markerData);
               }
-            }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+            }
+          }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+          viewerRef.current.screenSpaceEventHandler.setInputAction(function (click) {
+          }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
+
+
           
       }
+      
       viewerRef.current.entities.removeAll();
 
       
@@ -55,7 +61,7 @@ const Globe = ({ markers, onMarkerClick }) => {
         
   },[markers])
 
-  return <div id="cesiumContainer" style={{ height: '50vh', width: '50vw' }} />;
+  return <div id="cesiumContainer" style={{ height: '70vh', width: '50vw' }} />;
 };
 
 export default Globe;
