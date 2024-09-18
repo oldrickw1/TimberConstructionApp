@@ -50,7 +50,7 @@ function Home() {
         <Globe markers={filteredMarkers} onMarkerClick={handleMarkerClick} />
       </div>
       <div className="info-section">
-        {selectedMarker ? <InfoPanel marker={selectedMarker} /> : <p>Select a marker to view more details</p>}
+        {selectedMarker ? <InfoPanel marker={selectedMarker} /> : <p className='info'>Select a marker to view more details</p>}
       </div>
     </div>
   );

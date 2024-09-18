@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Filter.css'
 
 const Filter = ({ markers, handleFilter, getRandom}) => {
   const [filterText, setFilterText] = useState('');
@@ -11,8 +12,8 @@ const Filter = ({ markers, handleFilter, getRandom}) => {
 
 
   return (
-    <div style={filterStyles}>
-      <h3>Filter Projects</h3>
+    <div className='filter'>
+      <h3 className='filter-title'>Filter Projects</h3>
       <input 
         type="text" 
         value={filterText}
@@ -26,11 +27,5 @@ const Filter = ({ markers, handleFilter, getRandom}) => {
   );
 };
 
-const filterStyles = {
-  padding: '10px',
-  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  color: 'white',
-  height: '100%',
-};
 
 export default Filter;

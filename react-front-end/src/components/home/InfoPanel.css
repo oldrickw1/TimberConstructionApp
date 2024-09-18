@@ -4,7 +4,11 @@ body {
     background-color: #f4f4f9;
     padding: 20px;
   }
-  
+
+  .info {
+    padding: 50px;
+  }
+
   .info-container {
     display: flex;
     /* max-width: 900px; */
