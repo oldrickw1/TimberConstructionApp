@@ -28,6 +28,7 @@ function Home() {
   
   function handleFilter() {
     // remove this (just a test to see if backend con works)
+    console.log("Initiating API call");
 
    axios.get('http://localhost:8080/api/project')
    .then(function (response) {
@@ -36,7 +37,6 @@ function Home() {
    .catch(function (error) {
      console.error('Error fetching data:', error);
    });
-   console.log("Calling api")
 
   } 
   

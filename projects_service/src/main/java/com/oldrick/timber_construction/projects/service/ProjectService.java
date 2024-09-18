@@ -1,8 +1,5 @@
 package com.oldrick.timber_construction.projects.service;
 
-import com.oldrick.timber_construction.projects.dto.ArchitectureResponse;
-import com.oldrick.timber_construction.projects.dto.ProjectRequest;
-import com.oldrick.timber_construction.projects.dto.ProjectResponse;
 import com.oldrick.timber_construction.projects.model.Architect;
 import com.oldrick.timber_construction.projects.model.Project;
 import com.oldrick.timber_construction.projects.repository.ProjectRepository;
@@ -18,30 +15,18 @@ import java.util.List;
 public class ProjectService {
     private final ProjectRepository projectRepository;
 
-    public ProjectResponse createProject(ProjectRequest projectRequest) {
-        System.out.println(projectRequest);
-        Architect architect = Architect.builder().
-                name(projectRequest.architect().name())
-                .build();
-        Project project = Project.builder()
-                .name(projectRequest.name())
-                .description(projectRequest.description())
-                .architect(architect)
-                .build();
+    public Project createProject(Project project) {
         projectRepository.save(project);
         log.info("Product created successfully");
-        return new ProjectResponse(project.getId(), project.getName(), project.getDescription(), new ArchitectureResponse(architect.getId(), architect.getName()));
+        return project;
     }
 
 
-    public List<ProjectResponse> getAllProducts() {
-        return projectRepository.findAll()
-                .stream()
-                .map(project -> {
-                    Architect architect = project.getArchitect();
-                    return new ProjectResponse(project.getId(), project.getName(), project.getDescription(), new ArchitectureResponse(architect.getId(), architect.getName()));
-                })
-                .toList();
+    public List<Project> getAllProducts() {
+        return projectRepository.findAll();
     }
 
+    public List<Project> saveProjects(List<Project> projects) {
+        return projectRepository.saveAll(projects);
+    }
 }

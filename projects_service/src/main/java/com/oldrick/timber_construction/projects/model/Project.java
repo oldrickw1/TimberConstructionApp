@@ -20,23 +20,41 @@ public class Project {
     @Id
     private String id;
     private String name;
-    private String description;
-    private Architect architect;
-//    private double latitude;
-//    private double longitude;
-//    private String type; // to enum
-//    private String clientName; // to Client class?
-//    private String status; // enum
-//    private LocalDate startDate;
-//    private LocalDate endDate;
-//    private LocalDate actualStartDate;
-//    private LocalDate actualEndDate;
-//    private BigDecimal totalBudget;
-//    private List<Contractor> contractors;
-//    private List<SubContractor> subContractors;
-//    private List<Architect> architects;
+    private String image;
+    private String continent;
+    private String country;
+    private String city;
+    private Location location;
+    private String proposedYear;
+    private String status;
+    private String function;
+    private String link;
+
+    // Getters and Setters
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Data
+    public static class Location {
+        private String address;
+        private double lat;
+        private double lng;
+        private int zoom;
+        private String placeId;
+        private String streetNumber;
+        private String streetName;
+        private String streetNameShort;
+        private String city;
+        private String cityShort;
+        private String state;
+        private String stateShort;
+        private String postCode;
+        private String country;
+        private String countryShort;
 
 
+        // Getters and Setters
+    }
 
 
 }
