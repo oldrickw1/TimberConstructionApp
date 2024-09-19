@@ -14,6 +14,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:5174", "http://localhost:5173"})
 public class ProjectController {
 
+    // Todo: For simplicity, I omitted a DTO layer (ProjectRequest + ProjectResponse records). I should implement that for better separation of concern.
     private final ProjectService projectService;
 
     @PostMapping
@@ -28,10 +29,11 @@ public class ProjectController {
         return projectService.getAllProducts();
     }
 
-
     @PostMapping("/bulk")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Project> createProjects(@RequestBody List<Project> projectRequests) {
         return projectService.saveProjects(projectRequests);
     }
+
+
 }
