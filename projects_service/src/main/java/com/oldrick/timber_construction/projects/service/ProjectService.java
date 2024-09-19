@@ -1,6 +1,5 @@
 package com.oldrick.timber_construction.projects.service;
 
-import com.oldrick.timber_construction.projects.model.Architect;
 import com.oldrick.timber_construction.projects.model.Project;
 import com.oldrick.timber_construction.projects.repository.ProjectRepository;
 import lombok.AllArgsConstructor;
