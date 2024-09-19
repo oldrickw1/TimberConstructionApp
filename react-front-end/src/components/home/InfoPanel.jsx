@@ -42,7 +42,7 @@ const InfoPanel = ({ marker }) => {
         <p className="info-proposed-year">
           <strong>Proposed Year:</strong> {marker.proposed_year}
         </p>
-        <a href={"https://www.google.com/search?q=" + marker.name + "clt project"} target="_blank" rel="noopener noreferrer" className="info-link">
+        <a href={"https://www.google.com/search?q=" + marker.name + " clt project"} target="_blank" rel="noopener noreferrer" className="info-link">
           Learn More
         </a>
       </div>

@@ -2,7 +2,6 @@ import React, { useEffect, useRef} from 'react';
 
 const Globe = ({ markers, onMarkerClick }) => {
 
-  // Todo: This component works, but the entire Cesium viewer is re-rendered on each click on a marker. This causes bad performance. Leaving it for now so that I can focus on connecting to backend. 
   // Todo: Idea: Selected marker should turn another color so you can easily see which one is selected. 
 
   const  viewerRef = useRef();
