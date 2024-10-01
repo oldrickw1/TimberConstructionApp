@@ -21,7 +21,7 @@ services:
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://root:password@mongodb:27017/projects?authSource=admin
     ports:
-      - "8081:8080"
+      - "8080:8080"
     networks:
       - my-network
 
