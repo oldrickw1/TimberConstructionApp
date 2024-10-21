@@ -1,6 +1,8 @@
 import React from 'react';
 import './InfoPanel.css'
 
+const IMG_DIR = "../../../assets/img"
+
 const InfoPanel = ({ marker }) => {
   function processName(name) {
     return name.replace(/\s+/g, '_').toLowerCase();
@@ -11,10 +13,10 @@ const InfoPanel = ({ marker }) => {
      <div className="info-container">
       <div className="info-image">
         <img 
-          src={"../../../img/" + processName(marker.name) + ".jpg"} 
+          src={IMG_DIR + processName(marker.name) + ".jpg"} 
           alt={marker.name} 
           onError={(e) => {
-            e.target.src = "../../../img/default/default.jpg"
+            e.target.src = IMG_DIR + "/default/defaul.jpg"
           }}
         />
       </div>
