@@ -1,7 +1,7 @@
 import React from 'react';
 import './InfoPanel.css'
 
-const IMG_DIR = "../../../assets/img"
+const IMG_DIR = "../../../src/assets/img"
 
 const InfoPanel = ({ marker }) => {
   function processName(name) {
