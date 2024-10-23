@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: projects
+  namespace: tca
   labels:
     app: projects
-
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: projects 
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 3
+      maxSurge: 1
   template:
     metadata:
       labels:
@@ -24,8 +24,18 @@ spec:
           image: oldrick/projects
           ports:
             - containerPort: 8080
-          envFrom:
-            - configMapRef:
-                name: projects-configmap
-            - secretRef:
-                name: projects-secret
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: projects
+  namespace: tca
+spec: 
+  selector:
+    app: projects
+  type: NodePort 
+  ports:
+    - port: 8082
+      targetPort: 8080
+      nodePort: 30007

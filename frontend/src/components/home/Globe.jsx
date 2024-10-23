@@ -1,6 +1,6 @@
 import React, { useEffect, useRef} from 'react';
 
-const ICON_DIR = "../../../src/assets/icons"
+const ICON_DIR = "../../../assets/icons"
 const Globe = ({ markers, onMarkerClick }) => {
 
   // Todo: Idea: Selected marker should turn another color so you can easily see which one is selected. 

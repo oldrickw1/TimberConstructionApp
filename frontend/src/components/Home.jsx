@@ -67,7 +67,7 @@ function Home() {
 
  
   const fetchMarkers = () => {
-    axios.get('http://localhost:8080/api/project')
+    axios.get('http://localhost:8080/api/project') // Todo: extract const with url 
       .then(function (response) {
         const markers = response.data;  
         setAllMarkers(markers);  
