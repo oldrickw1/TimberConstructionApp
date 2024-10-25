@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/project")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:5174", "http://localhost:5173"})
+@CrossOrigin(origins = "*")
 public class ProjectController {
 
     // Todo: For simplicity, I omitted a DTO layer (ProjectRequest + ProjectResponse records). I should implement that for better separation of concern.
