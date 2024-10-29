@@ -67,8 +67,8 @@ function Home() {
 
  
   const fetchMarkers = () => {
-    axios.get('http://localhost:8080/api/project') // Todo: extract const with url 
-      .then(function (response) {
+    axios.get('http://tca.com/api/project') // Todo: this should be an environment variable.
+      .then(function (response) { 
         const markers = response.data;  
         setAllMarkers(markers);  
         setFilteredMarkers(markers); // filteredMarkers is initually just "allMarkers"
