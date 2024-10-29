@@ -1,6 +1,8 @@
 import React, { useEffect, useRef} from 'react';
+import redMarker from '../../assets/icons/redMarker.png'
 
-const ICON_DIR = "../../../assets/icons"
+
+const MARKER_ICON = redMarker
 const Globe = ({ markers, onMarkerClick }) => {
 
   // Todo: Idea: Selected marker should turn another color so you can easily see which one is selected. 
@@ -54,7 +56,7 @@ const Globe = ({ markers, onMarkerClick }) => {
       markers.forEach(marker => {
           const entity = viewerRef.current.entities.add({
             position: Cesium.Cartesian3.fromDegrees(marker.location.lng, marker.location.lat),
-            billboard: {image: ICON_DIR + '/redMarker.png', width: 32, height: 62},
+            billboard: {image: MARKER_ICON , width: 32, height: 62},
             markerData: marker 
           });
         });
