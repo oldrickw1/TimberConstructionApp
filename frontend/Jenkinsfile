@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "yourdockerhubusername/your-microservice"
+        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'   // Jenkins ID for Docker credentials
+        K8S_CREDENTIALS_ID = 'k8s-credentials'             // Jenkins ID for Kubernetes credentials
+    }
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                        def app = docker.build("${DOCKER_IMAGE}:${env.BUILD_ID}")
+                        app.push()
+                        app.push("latest")
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Configure Kubernetes credentials
+                    withCredentials([file(credentialsId: K8S_CREDENTIALS_ID, variable: 'KUBECONFIG')]) {
+                        // Deploy the new Docker image version to Kubernetes
+                        sh 'kubectl apply -f ../infrastructure/k8s/'  // Updated path to the k8s directory
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()  // Clean workspace after build
+        }
+    }
+}
+
