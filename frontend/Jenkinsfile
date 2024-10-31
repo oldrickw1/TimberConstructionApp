@@ -1,11 +1,9 @@
-
 pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "oldrick/tca-frontend"  // Replace with your Docker Hub repository name
-        DOCKER_TAG = "${env.BUILD_ID}" // Unique tag for each build
-        KUBE_NAMESPACE = "tca" // Namespace in Minikube (use 'default' if unsure)
+        DOCKER_IMAGE = "oldrick/tca-frontend"  
+        DOCKER_TAG = "${env.BUILD_ID}"
     }
 
     stages {
@@ -16,17 +14,23 @@ pipeline {
         }
 
         stage('Build Docker Image') {
+            when {
+                changeset "**/frontend/src/**"
+            }
             steps {
                 script {
-                  docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                    // Build Docker image from the frontend folder
-                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} frontend/"
-                    sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
-                  }
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} frontend/"
+                        sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+                    }
                 }
             }
         }
-          stage('Login to Docker Hub') {
+
+        stage('Login to Docker Hub') {
+            when {
+                changeset "**/frontend/src/**"
+            }
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
@@ -36,11 +40,14 @@ pipeline {
             }
         }
 
-          stage('Push Docker Image') {
+        stage('Push Docker Image') {
+            when {
+                changeset "**/frontend/src/**"
+            }
             steps {
                 script {
-                       withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-                        sh 'docker push ${DOCKER_IMAGE}:${DOCKER_TAG}' 
+                    withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+                        sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     }
                 }
             }
@@ -49,8 +56,8 @@ pipeline {
 
     post {
         always {
-            // Clean up Docker images on Jenkins host after the build
             sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || true"
         }
     }
 }
+
