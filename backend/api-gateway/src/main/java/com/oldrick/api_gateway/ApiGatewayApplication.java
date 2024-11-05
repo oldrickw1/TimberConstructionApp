@@ -12,8 +12,7 @@ public class ApiGatewayApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiGatewayApplication.class, args);
-        logger.info("ApiGatewayApplication has started successfully!");
-        logger.info("Configured route for projects-service: http://projects.tca.svc.cluster.local:8080/api/project");
+
     }
 }
 
