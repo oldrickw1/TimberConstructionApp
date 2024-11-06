@@ -17,6 +17,7 @@ public class MessageController {
 
     @PostMapping("/send")
     public String sendMessage(@RequestBody String message) {
+        System.out.println("/send inside rabbitmq is hit!");
         rabbitTemplate.convertAndSend(RabbitMqConfig.QUEUE_NAME, message);
         return "Message sent to the RabbitMQ queue: " + message;
     }
