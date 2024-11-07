@@ -37,11 +37,17 @@ services:
       - "15672:15672"
     networks:
       - my-network
+    healthcheck:
+      test: [ "CMD-SHELL", "rabbitmqctl status" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
 
   email_service:
     image: oldrick/mail-service
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_RABBITMQ_PORT=5672
@@ -55,6 +61,7 @@ services:
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
     networks:
       - my-network
+    restart: always
 
 networks:
   my-network:
