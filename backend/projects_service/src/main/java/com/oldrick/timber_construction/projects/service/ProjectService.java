@@ -16,7 +16,7 @@ public class ProjectService {
 
     public Project createProject(Project project) {
         projectRepository.save(project);
-        log.info("Product created successfully");
+        log.info("Project '{}' added successfully", project.getName());
         return project;
     }
 
