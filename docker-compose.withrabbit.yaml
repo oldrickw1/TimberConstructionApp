@@ -1,0 +1,61 @@
+services:
+  mongodb:
+    image: mongo:7.0.5
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: projects
+    volumes:
+      - ./data:/data/db
+
+  projects_service:
+    image: oldrick/projects  # Replace with your Spring Boot Docker image
+    depends_on:
+      - mongodb
+      - rabbitmq
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://root:password@mongodb:27017/projects?authSource=admin
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    ports:
+      - "8091:8080"
+    networks:
+      - my-network
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my-network
+
+  email_service:
+    image: oldrick/mail-service
+    depends_on:
+      - rabbitmq
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - SPRING_MAIL_HOST=smtp.gmail.com               # Update with your SMTP host
+      - SPRING_MAIL_PORT=587
+      - SPRING_MAIL_USERNAME=your_email@gmail.com     # Update with your email
+      - SPRING_MAIL_PASSWORD=your_email_password      # Update with your email password
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
