@@ -1,4 +1,24 @@
 services:
+  frontend:
+    image: oldrick/tca-frontend
+    depends_on:
+      - projects
+    ports:
+      - "9000:80"
+    networks:
+      - my-network
+
+  gateway:
+    image: oldrick/api-gateway
+    depends_on:
+      - projects
+    ports:
+      - "8000:8080"
+    networks:
+      - my-network
+    environment:
+      URI_PROJECTS_SERVICE: http://projects:8080/
+
   mongodb:
     image: mongo:7.0.5
     container_name: mongodb
@@ -13,17 +33,17 @@ services:
     volumes:
       - ./data:/data/db
 
-  projects_service:
+  projects:
     image: oldrick/projects  # Replace with your Spring Boot Docker image
     depends_on:
       - mongodb
       - rabbitmq
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://root:password@mongodb:27017/projects?authSource=admin
-      - SPRING_RABBITMQ_HOST=rabbitmq
-      - SPRING_RABBITMQ_PORT=5672
-      - SPRING_RABBITMQ_USERNAME=guest
-      - SPRING_RABBITMQ_PASSWORD=guest
+      SPRING_DATA_MONGODB_URI: mongodb://root:password@mongodb:27017/projects?authSource=admin
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
     ports:
       - "8091:8080"
     networks:
@@ -43,7 +63,7 @@ services:
       timeout: 10s
       retries: 10
 
-  email_service:
+  email:
     image: oldrick/mail-service
     depends_on:
       rabbitmq:
