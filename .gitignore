@@ -5,3 +5,8 @@ project.mdljh
 /data/
 .idea/
 backend/projects_service/manifest_bak/
+frontend/src/assets
+project_meta/system_architecture_diagram
+scripts/venv
+frontend/public/assets
+business_data/

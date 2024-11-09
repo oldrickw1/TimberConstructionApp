@@ -31,7 +31,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: projects
     volumes:
-      - ./data:/data/db
+      - ./../data:/data/db
 
   projects:
     image: oldrick/projects  # Replace with your Spring Boot Docker image

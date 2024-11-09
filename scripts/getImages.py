@@ -1,10 +1,11 @@
 import requests
-import os
+import os, sys
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin  # To handle relative URLs
 from PIL import Image
 from io import BytesIO
 import time  # For introducing delay between requests
+
 
 def search_and_download_images(filename, min_width=500, min_height=500):
     with open(filename, 'r') as f:
@@ -69,6 +70,11 @@ def search_and_download_images(filename, min_width=500, min_height=500):
         else:
             print(f"Error fetching search results for {value}")
 
-# Replace 'names.txt' with the actual path to your text file
-# Example: minimum width and height of 500 pixels
-search_and_download_images('/home/oldrick/TCA/data/rough/names.txt', min_width=160, min_height=100)
+# Check if correct number of arguments are passed
+if len(sys.argv) != 2:
+    print("Usage: python script_name.py <input_file> <output_file>")
+    sys.exit(1)
+
+
+
+search_and_download_images(sys.argv[1], min_width=160, min_height=100)

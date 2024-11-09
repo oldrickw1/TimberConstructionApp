@@ -1,6 +1,7 @@
 import React from 'react';
 import './InfoPanel.css'
 
+
 const IMG_DIR = "../../../src/assets/img"
 
 const InfoPanel = ({ marker }) => {
@@ -13,10 +14,10 @@ const InfoPanel = ({ marker }) => {
      <div className="info-container">
       <div className="info-image">
         <img 
-          src={IMG_DIR + processName(marker.name) + ".jpg"} 
+          src={"http://localhost:9000/assets/img/project_images/" + processName(marker.name) + ".jpg"}
           alt={marker.name} 
           onError={(e) => {
-            e.target.src = IMG_DIR + "/default/defaul.jpg"
+            e.target.src = "http://localhost:9000/assets/img/default/"+ defaultImage;
           }}
         />
       </div>

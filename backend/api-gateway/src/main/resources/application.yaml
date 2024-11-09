@@ -7,7 +7,9 @@ spring:
         - id: projects-service
           uri: ${URI_PROJECTS_SERVICE}
           predicates:
-            - Path=/**
+            - Path=/projects/**
+          filters:
+            - SetPath=/api/project
 
 logging:
   level:
