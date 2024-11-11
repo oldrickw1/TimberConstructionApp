@@ -17,7 +17,7 @@ const InfoPanel = ({ marker }) => {
           src={"http://localhost:9000/assets/img/project_images/" + processName(marker.name) + ".jpg"}
           alt={marker.name} 
           onError={(e) => {
-            e.target.src = "http://localhost:9000/assets/img/default/"+ defaultImage;
+            e.target.src = "http://localhost:9000/assets/img/default/default.jpg";
           }}
         />
       </div>

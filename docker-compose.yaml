@@ -8,6 +8,8 @@ services:
     networks:
       - my-network
 
+
+
   gateway:
     image: oldrick/api-gateway
     depends_on:

@@ -67,7 +67,7 @@ function Home() {
 
  
   const fetchMarkers = () => {
-    axios.get('http://127.0.0.0:8000/projects') // Todo: this should be an environment variable (Does that make sense in frontend?)
+    axios.get("http://127.0.0.1:8000/projects") // Todo: this should be an environment variable (Does that make sense in frontend?)
       .then(function (response) { 
         const markers = response.data;  
         setAllMarkers(markers);  

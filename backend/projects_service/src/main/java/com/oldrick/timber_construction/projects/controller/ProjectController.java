@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/project")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 public class ProjectController {
     private final RabbitTemplate rabbitTemplate;
 
