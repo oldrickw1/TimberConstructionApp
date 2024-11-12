@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +26,25 @@ public class Project {
     private String function;
     private String link;
 
-    // Getters and Setters
+    @Override
+    public String toString() {
+        return String.format(
+                "Project Information:\n" +
+                        "----------------------------\n" +
+                        "ID: %s\n" +
+                        "Name: %s\n" +
+                        "Image: %s\n" +
+                        "Continent: %s\n" +
+                        "Country: %s\n" +
+                        "City: %s\n" +
+                        "Location: \n%s" +
+                        "Proposed Year: %s\n" +
+                        "Status: %s\n" +
+                        "Function: %s\n" +
+                        "Link: %s\n",
+                id, name, image, continent, country, city, location, proposedYear, status, function, link
+        );
+    }
 
     @AllArgsConstructor
     @NoArgsConstructor
@@ -49,9 +66,24 @@ public class Project {
         private String country;
         private String countryShort;
 
-
-        // Getters and Setters
+        @Override
+        public String toString() {
+            return String.format(
+                    "  Address: %s\n" +
+                            "  Latitude: %.6f\n" +
+                            "  Longitude: %.6f\n" +
+                            "  Zoom: %d\n" +
+                            "  Place ID: %s\n" +
+                            "  Street Number: %s\n" +
+                            "  Street Name: %s\n" +
+                            "  Street Name Short: %s\n" +
+                            "  City: %s\n" +
+                            "  State: %s\n" +
+                            "  Post Code: %s\n" +
+                            "  Country: %s\n" +
+                            "  Country Short: %s\n",
+                    address, lat, lng, zoom, placeId, streetNumber, streetName, streetNameShort, city, state, postCode, country, countryShort
+            );
+        }
     }
-
-
 }

@@ -35,7 +35,6 @@ const uniqueStatuses = ['Demolished', 'Canceled', 'Under Construction', 'Propose
           <p>Showing {amountOfMarkers} markers</p>
         </div>
       <br></br>
-      <button onClick={getRandom}>Get Random Data</button>
     </div>
   );
 };

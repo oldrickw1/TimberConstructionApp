@@ -22,16 +22,17 @@ public class ProjectController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Project createProject(@RequestBody Project projectRequest) {
+        Project project = projectService.createProject(projectRequest);
         System.out.println("--------------------------         trying to send message to rabbitmq!!!!");
         try {
-            rabbitTemplate.convertAndSend(RabbitMqConfig.QUEUE_NAME, "message send to rabbitmq");
+            rabbitTemplate.convertAndSend(RabbitMqConfig.QUEUE_NAME, "A new project has been added: \n" + project.toString());
         } catch (Exception e) {
             System.out.println("Failed to send message to rabbitmq" );
             e.getMessage();
         }
         System.out.println("--------------------------         message send to rabbitmq!!!!");
 
-        return projectService.createProject(projectRequest);
+        return project;
     }
 
     @GetMapping

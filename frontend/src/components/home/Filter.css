@@ -1,15 +1,76 @@
-
 .filter {
-    margin: 20px;
+    padding: 10px 20px;
 }
-
-.filter-title {
-    color: #fff;
-}
-
-.overview p {
-    margin-top: 10px;
-    font-size: 16px;
+  
+  /* Title */
+  .filter-title {
+    font-size: 1.6rem;
     font-weight: bold;
     color: #fff;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
   }
+  
+  /* Input Field for Search */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 15px; /* Space between input and dropdown */
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #6c63ff;
+    outline: none;
+  }
+  
+  /* Select Dropdown */
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 15px; /* Space between dropdowns */
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+  }
+  
+  select:focus {
+    border-color: #6c63ff;
+    outline: none;
+  }
+  
+  /* Overview Section (Amount of markers) */
+  .overview {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Hover effect on the whole filter container */
+  .filter:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .filter {
+      padding: 15px;
+    }
+  
+    .filter-title {
+      font-size: 1.4rem;
+    }
+  
+    input[type="text"], select {
+      padding: 8px;
+    }
+  }
+  

@@ -10,3 +10,4 @@ project_meta/system_architecture_diagram
 scripts/venv
 frontend/public/assets
 business_data/
+backend/mail_service/src/main/resources/application.properties

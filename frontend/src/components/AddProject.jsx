@@ -66,7 +66,7 @@ const AddProject = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} id="add-project-form">
+    <form onSubmit={handleSubmit} id="add-project-form"  autoComplete="off">
       <h2 id="form-title">Add Project</h2>
 
       {/* ID Field */}
