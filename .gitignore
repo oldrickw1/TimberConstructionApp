@@ -11,3 +11,4 @@ scripts/venv
 frontend/public/assets
 business_data/
 backend/mail_service/src/main/resources/application.properties
+infrastucture/k8s/email.yaml

@@ -19,11 +19,7 @@ const Globe = ({ markers, onMarkerClick }) => {
                 baseLayerPicker: false,  
                 terrainProvider: Cesium.createWorldTerrain(),
           });  
-          // // Set the initial view to Spain
-          // viewerRef.current.camera.setView({
-          //     destination: Cesium.Rectangle.fromDegrees(-9.86, 35.95, 3.34, 43.79) // Bounding box for Spain
-          // });
-          
+
           viewerRef.current.screenSpaceEventHandler.setInputAction(function (click) {
             const pickedObject = viewerRef.current.scene.pick(click.position);
             
